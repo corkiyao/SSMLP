@@ -24,7 +24,7 @@ tic
     B = imrotate(A,90);
     C = imrotate(A,180);
     D = imrotate(A,270);
-	A1 = gaussian_down_sample(A,scale);% or imresize((gaussian_down_sample(A,scale)), scale,'bicubic');
+    A1 = gaussian_down_sample(A,scale);% or imresize((gaussian_down_sample(A,scale)), scale,'bicubic');
     B1 = gaussian_down_sample(B,scale);% or imresize((gaussian_down_sample(B,scale)), scale,'bicubic');
     C1 = gaussian_down_sample(C,scale);% or imresize((gaussian_down_sample(C,scale)), scale,'bicubic');
     D1 = gaussian_down_sample(D,scale);% or imresize((gaussian_down_sample(D,scale)), scale,'bicubic');
