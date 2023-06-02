@@ -24,16 +24,16 @@ tic
     B = imrotate(A,90);
     C = imrotate(A,180);
     D = imrotate(A,270);
-    A1 = gaussian_down_sample(A,scale);% or imresize((gaussian_down_sample(A,scale)), scale,'bicubic');
-    B1 = gaussian_down_sample(B,scale);% or imresize((gaussian_down_sample(B,scale)), scale,'bicubic');
-    C1 = gaussian_down_sample(C,scale);% or imresize((gaussian_down_sample(C,scale)), scale,'bicubic');
-    D1 = gaussian_down_sample(D,scale);% or imresize((gaussian_down_sample(D,scale)), scale,'bicubic');
+    %A1 = gaussian_down_sample(A,scale);% or imresize((gaussian_down_sample(A,scale)), scale,'bicubic');
+    %B1 = gaussian_down_sample(B,scale);% or imresize((gaussian_down_sample(B,scale)), scale,'bicubic');
+    %C1 = gaussian_down_sample(C,scale);% or imresize((gaussian_down_sample(C,scale)), scale,'bicubic');
+    %D1 = gaussian_down_sample(D,scale);% or imresize((gaussian_down_sample(D,scale)), scale,'bicubic');
     
     for x = 1: stride :hei-size_label+1
         for y = 1 :stride : wid-size_label+1
             subim_label = A(x : x+size_label-1, y :y+size_label-1,:); 
             %0
-            %subim_input =  A1(x : x+size_label-1, y :y+size_label-1,:);
+            subim_input =  gaussian_down_sample(A,scale);
             count=count+1;
             dataa(:, :, :,1,count) = subim_input;
             label(:, :, :,1,count) = subim_label;
@@ -45,7 +45,7 @@ tic
         for y = 1 :stride : wid-size_label+1
             subim_label = B(x : x+size_label-1, y :y+size_label-1,:); 
             %90
-            %subim_input =  B1(x : x+size_label-1, y :y+size_label-1,:);
+            subim_input =  gaussian_down_sample(B,scale);
             count=count+1;
             dataa(:, :, :,1,count) = subim_input;
             label(:, :, :,1,count) = subim_label;
@@ -57,7 +57,7 @@ tic
         for y = 1 :stride : wid-size_label+1
             subim_label = C(x : x+size_label-1, y :y+size_label-1,:); 
            %180
-            %subim_input =  C1(x : x+size_label-1, y :y+size_label-1,:);
+            subim_input =  gaussian_down_sample(C,scale);
             count=count+1;
             dataa(:, :, :,1,count) = subim_input;
             label(:, :, :,1,count) = subim_label;
@@ -69,7 +69,7 @@ tic
         for y = 1 :stride : wid-size_label+1
             subim_label = D(x : x+size_label-1, y :y+size_label-1,:); 
             %270
-            %subim_input =  D1(x : x+size_label-1, y :y+size_label-1,:);
+            subim_input =  gaussian_down_sample(D, scale);
             count=count+1;
             dataa(:, :, :,1,count) = subim_input;
             label(:, :, :,1,count) = subim_label;
