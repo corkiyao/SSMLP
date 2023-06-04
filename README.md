@@ -16,7 +16,7 @@ Dataset
 Requirement
 ---------
 **python 3.8, Pytorch 1.10.0**
-**timm package --> you can find it at:https://github.com/ggjy/Hire-Wave-MLP.pytorch **
+timm package --> you can find it at:https://github.com/ggjy/Hire-Wave-MLP.pytorch **
 --------
 If you has any questions, please send e-mail to 3021958705@qq.com.
 
