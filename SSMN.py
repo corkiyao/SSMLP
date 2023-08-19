@@ -553,17 +553,25 @@ class MLPours(nn.Module):
         N, B, H, W, C = x5.shape
         oH, oW = self.scale * H, self.scale * W 
         
-        x = x5.permute(0,4,1,2,3)
-        x = _to_4d_tensor(x, depth_stride=1)
-        
-        N1, C1, H1, W1 = x.shape
-        x = x.permute(0,2,3,1)
-        x = self.up2(x).contiguous().view(N1, H, W, C1, self.scale, self.scale)
-        x = x.permute(0,1,4,2,5,6).contiguous()
-        x = x.reshape(N1, oH, oW, C1)
-        
-        x = x.permute(0,3,1,2)
-        x = _to_5d_tensor(x, depth=self.band)
+        ## MLP upsample
+            # x = x5.permute(0,4,1,2,3)
+            # x = _to_4d_tensor(x, depth_stride=1)
+            
+            # N1, C1, H1, W1 = x.shape
+            # x = x.permute(0,2,3,1)
+            # x = self.up2(x).contiguous().view(N1, H, W, C1, self.scale, self.scale)
+            # x = x.permute(0,1,4,2,5,6).contiguous()
+            # x = x.reshape(N1, oH, oW, C1)
+            
+            # x = x.permute(0,3,1,2)
+            # x = _to_5d_tensor(x, depth=self.band)
+        ## Conv upsample
+            # x = x5.permute(0,4,1,2,3)
+            # x = self.upconv2d(x)
+            # x = _to_5d_tensor(x, depth=self.band)
+        ## Conv3d Upsample
+            # x = self.upconv3d(x5)
+
         x = self.end(x.permute(0,2,3,4,1)) 
         x = x.squeeze(4) 
         x = self.up3(x.permute(0,2,3,1)).permute(0,3,1,2)
