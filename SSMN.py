@@ -558,8 +558,8 @@ class MLPours(nn.Module):
         
         N1, C1, H1, W1 = x.shape
         x = x.permute(0,2,3,1)
-        x = self.up2(x).contiguous().view(N1, H, W, self.scale, self.scale, C1)
-        x = x.permute(0,1,3,2,4,5).contiguous()
+        x = self.up2(x).contiguous().view(N1, H, W, C1, self.scale, self.scale)
+        x = x.permute(0,1,4,2,5,6).contiguous()
         x = x.reshape(N1, oH, oW, C1)
         
         x = x.permute(0,3,1,2)
